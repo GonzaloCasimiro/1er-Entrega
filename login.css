@@ -4,7 +4,7 @@
     box-sizing:border-box;
     font-family:sans-serif;
 }
-body{
+.body_login{
     display:flex;
     align-items:center;
     justify-content: center;
@@ -23,12 +23,12 @@ form .title{
     color:black;
     font-size: 35px;
     font-weight: 800;
-    margin-bottom: 35px;
+    margin-bottom: 15px;
 }
 form label{
     margin-bottom: 35px;
 }
-.fa-solid,.fa-regular{
+.fa-solid,.fa-regular,.fa-envelope{
     font-size: 20px;
     color:black;
     margin-right:10px;
@@ -40,11 +40,212 @@ form .link{
     color:#252525;
     margin-bottom:15px;
 }
-form button{
+.botones{
     color:#fff;
     border:none;
     background: linear-gradient(to right,#009900,#0099cc);
     padding: 10px 15;
     cursor: pointer;
     font-size: 20px;
+}
+.img__portada{
+    background-image:url(./img/escuela.jpg);
+    height:200px;
+    width:400px;
+    background-size: cover;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+/* CSS DE LAS ETIQUIETAS CREADAS EN JS*/
+.section__contenedor{
+    width:70%;
+    height:600px;
+    background: linear-gradient(to left,#009900,#0099cc);
+}
+.h1__alumno{
+    text-align: center;
+    height:10%;
+}
+.contenedor{
+    width:100;
+    height:500px;
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.card{
+    display:flex;
+    flex-direction: column;
+    margin:5% 15% 5% 15%;
+    border-radius: 10%;
+    height:200px;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.9);
+    width:70%;
+}
+.card:hover{
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.9);
+}
+
+.card__top{
+    height:150px;
+    width:100%;
+    background-size: cover;
+}
+.card__img{
+    height:150px;
+    width:100%;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
+.card__boton{
+    height: 50px;
+    background-color: brown;
+    width: 100%;
+    border-bottom-left-radius:10%;
+    border-bottom-right-radius: 10%;
+    font-size: 1em;
+    color:white;
+    text-align: center;
+}
+
+
+/* CSS DEL REGISTRO*/
+.label__radio{
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.input__radio{
+    margin-left:10px;
+}
+
+/* CSS DEL LOGIN PROFESORES*/
+
+.section_alumnos{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    background: linear-gradient(to right,#009900,#0099cc);
+    align-content: center;
+    justify-content: center;
+}
+.h1_bienvenida{
+    margin:0px;
+    color:white;
+    text-align: center;
+    font-size: 20px;
+    background-color:#08313A;
+}
+.caja_alumnos{
+    background: linear-gradient(to right,#009900,#0099cc);
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+.alumno{
+    display:flex;
+    flex-direction: column;
+    margin:10% 5% 10% 5%;
+    border-radius: 10%;
+    height:70%;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.9);
+    width:80%;
+    background-color: #145DA0;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+.alumno_h2{
+    margin-bottom: 15px;
+    font-size: 20px;
+    color:#fff;
+    height:10%;
+    text-align: center;
+}
+.alumno_img{
+    border-radius: 50%;
+    height:60%;
+    width:80%;
+}
+.button_alumno{
+    font-size: 18px;
+    margin-top:15px;
+    border-radius: 25%;
+    height:60%;
+    color:#fff;
+    background: linear-gradient(to right,#009900,#0099cc);
+}
+.caja_de_anuncios{
+    background-color: #08313A;
+    color:white;
+    height:50%;
+}
+.h2_anuncios{
+    margin:20px;
+    text-align: center;
+    color:white;
+    height:10px;
+    font-size: 15px;
+}
+.caja_p{
+    border:1px solid #0C2D48;
+    color:#0C2D48;
+    text-align: center;
+    font-size: 17px;
+    height:40px;
+    border-radius:10%;
+    background-color:#B1D4E0;
+}
+.h3_alumnos{
+    background: linear-gradient(to right,#009900,#0099cc);
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 35px;
+}
+
+/* CSS HEADER */
+.body_logeado{
+    background-color: black;
+    border:2px solid red;
+    margin-top:2%;
+    width:80%;
+    margin-left: 10%;
+    margin-right:10%;
+}
+.header_login{
+    display:flex;
+    width:100%;
+    border :5px solid yellow;
+}
+.header_img{
+    height:150px;
+    width:35%;
+}
+.datos{
+    background-color: #145DA0;
+    height: 100%;
+    width:65%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.datos_nombre{
+    height: 10%;
+    color:orange;
+    text-align: center;
+    margin-top:18px;
+    font-size: 25px;
+}
+.datos_lista{
+    height:90%;
+}
+li{
+    margin:0;
+    text-align: center;
+    list-style-type: none;
+    font-size: 18px;
 }

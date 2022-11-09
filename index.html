@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="estilo.css" class="rel">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
 </head>
-<body>
-    <form action="">
-        <h2 class="title">LOGIN</h2>
+<body id="body" class="body_login">
+    <div id="contenedor">
+    <form action=""id="formulario">
+        <h2 id="titulo">Escuela </h2>
+        <div class="img__portada"></div>
+        <h2 class="title">Ingresar</h2>
         <label>
             <i class="fa-regular fa-user"></i>
             <input placeholder="usuario"type="text" id="usuario">
@@ -19,11 +22,12 @@
             <i class="fa-solid fa-lock"></i>
             <input placeholder="contraseña"type="password" id="contraseña">
         </label>
-        <a href="#" class="link">Olvidaste tu contraseña?</a>
-        <button id="boton">Entrar</button>
+        <button id="boton" class="botones">Entrar</button>
+        <p class="parrafo__login" id="parrafo_login">¿Aun no te has registrado?</p>
+        <button id="registro"class="botones">Registrate</button>
     </form>
+</div>
     <script src="login.js">
-
     </script>
 </body>
 </html>
