@@ -20,7 +20,7 @@ class Usuario{
     }
 }
 class Alumno {
-    constructor(nombre,apellido,dni,img,edad,nota_historia,nota_matematicas,nota_fisica,nota_quimica){
+    constructor(nombre,apellido,dni,img,edad,nota_historia,nota_matematicas,nota_fisica,nota_quimica,nro_contacto){
         this.nombre=nombre;
         this.apellido=apellido;
         this.dni=dni;
@@ -30,22 +30,116 @@ class Alumno {
         this.nota_matematicas=nota_matematicas;
         this.nota_quimica=nota_quimica;
         this.nota_historia=nota_historia;
+        this.nro_contacto=nro_contacto
     }
-    get_notas(materia){
-        if (materia=="historia"){
-            console.log("Tu nota en Historia es de : "+this.nota_historia)
+    get_notas_matematica(examen){
+        if (examen=="primer"){
+            if(this.nota_matematicas.primer==undefined){
+                return "1er examen : s/nota"
+            }
+            else{
+            return"1er examen : "+this.nota_matematicas.primer
         }
-        else if (materia=="matematicas"){
-            console.log("Tu nota en Matematicas es de : "+ this.nota_matematicas);
         }
-        else if (materia=="fisica"){
-            console.log("Tu nota en Fisica es de : "+ this.nota_fisica);
+        else if (examen=="segundo"){
+            if(this.nota_matematicas.segundo==undefined){
+                return "2do examen :  s/nota"
+            }
+            else{
+                return"2do examen : "+ this.nota_matematicas.segundo
+            }
+            
         }
-        else if (materia=="quimica"){
-            console.log("Tu nota en qumica es de :"+ this.nota_qumica);
+        else if (examen="tercer"){
+            if(this.nota_matematicas.tercer==undefined){
+                return "3er examen : s/nota"
+            }
+            else{
+                return "3er examen: "+ this.nota_matematicas.tercer
+            }
+            
         }
-        else{
-            console.log("No tienes esa materia");
+    }
+    get_notas_fisica(examen){
+        if (examen=="primer"){
+            if(this.nota_fisica.primer==undefined){
+                return "1er examen : s/nota"
+            }
+            else{
+            return"1er examen : "+this.nota_fisica.primer
+        }
+        }
+        else if (examen=="segundo"){
+            if(this.nota_fisica.segundo==undefined){
+                return "2do examen : s/nota"
+            }
+            else{
+            return"2do examen : "+this.nota_fisica.segundo
+        }
+        }
+        else if (examen=="tercer"){
+            if(this.nota_fisica.tercer==undefined){
+                return "3er examen : s/nota"
+            }
+            else{
+            return"3er examen : "+this.nota_fisica.tercer
+        }
+        }
+    }
+    get_notas_quimica(examen){
+        if (examen=="primer"){
+            if(this.nota_quimica.primer==undefined){
+                return "!er examen : s/nota"
+            }
+            else{
+                return "1er examen : "+this.nota_quimica.primer
+            }
+            
+        }
+        else if (examen=="segundo"){
+            if(this.nota_quimica.segundo==undefined){
+                return "2do examen : s/nota"
+            }
+            else{
+                return "2do examen : "+ this.nota_quimica.segundo
+            }
+            
+        }
+        else if (examen=="tercer"){
+            if(this.nota_quimica.tercer==undefined){
+                return "3er examen : s/nota"
+            }
+            else{
+                return "3er examen: "+ this.nota_quimica.tercer;
+            }
+        }
+    }
+    get_notas_historia(examen){
+        if (examen=="primer"){
+            if(this.nota_historia.primer==undefined){
+                return "1er examen : s/nota"
+            }
+            else{
+                return "1er examen : "+this.nota_historia.primer
+            }
+            
+        }
+        else if (examen=="segundo"){
+            if(this.nota_historia.segundo==undefined){
+                return "2do examen : s/nota"
+            }
+            else{
+                return "2do examen : "+ this.nota_historia.segundo
+            }
+            
+        }
+        else if (examen=="tercer"){
+            if(this.nota_historia.tercer){
+                return "3er examen : s/nota"
+            }
+            else{
+                return "3er examen: "+ this.nota_historia.tercer
+            }
         }
     }
     set_notas(materia,nota){
@@ -66,7 +160,6 @@ class Alumno {
         }
     }
 }
-
 class Profesor{
     constructor(dni,nombre,apellido,img,asignatura,edad,nro_contacto){
         this.dni=dni,
@@ -95,24 +188,102 @@ class Profesor{
         }
     }
 }
+class Materia{
+    constructor( area,proximo_examen,temas,material_estudio){
+        this.area=area,
+        this.proximo_examen=proximo_examen,
+        this.temas=temas,
+        this.material_estudio=material_estudio
+    }
+
+}
 //                          LISTAS Y PUSHEOS
+
+
+let temas_examen={tema_uno:"Funciones",tema_dos:"Ecuaciones",tema_tres:"--"};
+let material_estudio={libro_uno:"Libro : 'X' ",libro_dos:"Libro : x+2",libro_tres:"Libro: Inteligencia Math"};
+let Materias=[];
+
+//              MATERIAS
+let nueva_materia=new Materia("matematica","22 Diciembre",temas_examen,material_estudio);
+Materias.push(nueva_materia);
+
+temas_examen={tema_uno:"Revolucion Francesa",tema_dos:"Rev industrial",tema_tres:"Guerra fria"};
+material_estudio={libro_uno:"Historiadores ",libro_dos:"Historia de 4th",libro_tres:"Historia 3"};
+nueva_materia=new Materia("historia","23 Diciembre",temas_examen,material_estudio);
+Materias.push(nueva_materia);
+
+temas_examen={tema_uno:"Fenomenos fisicos",tema_dos:"Fenomenos quimicos",tema_tres:"Ramas"};
+material_estudio={libro_uno:" Quimica 1 ",libro_dos:"Quimica 2",libro_tres:"Quimica 3"};
+nueva_materia=new Materia("quimica","20 Diciembre",temas_examen,material_estudio);
+Materias.push(nueva_materia);
+
+temas_examen={tema_uno:"optica",tema_dos:"acustica",tema_3:"potencia"};
+material_estudio={libro_uno:" Fisica 1 ",libro_dos:"Fisica 2",libro_tres:"Fisica 3"};
+nueva_materia=new Materia("fisica","18 Diciembre",temas_examen,material_estudio);
+Materias.push(nueva_materia);
+
+
 //              ALUMNOS
 let Alumnos=[];
-let nuevo_alumno=new Alumno("Rafa","Gorgory",1,"./img/rafa.jpg",16,3,6,8,9);
+//NOTAS
+let notas_matematica={primer:3,segundo:4,tercer:5};
+let notas_fisica={primer:2,segundo:3,tercer:4};
+let notas_historia={primer:1,segundo:2,tercer:3};
+let notas_quimica={primer:4,segundo:5,tercer:6};
+//CREO ALUMNO
+let nuevo_alumno=new Alumno("Rafa","Gorgory",2,"./img/rafa.jpg",16,notas_historia,notas_matematica,notas_fisica,notas_quimica,4222324);
+//AGREGO A LISTA
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Bart","simpsons",2,"./img/bart.jpg",16,2,3,4,5);
+// SE REPITE EL PROCESO PARA AGREGAR ALUMNOS AL ARRAY
+
+notas_matematica={primer:5,segundo:8,tercer:undefined};
+notas_fisica={primer:6,segundo:7,tercer:undefined};
+notas_historia={primer:5,segundo:6,tercer:undefined};
+notas_quimica={primer:3,segundo:6,tercer:undefined};
+nuevo_alumno=new Alumno("Bart","simpsons",1,"./img/bart.jpg",16,notas_historia,notas_matematica,notas_fisica,notas_quimica,4222244);
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Nelson","Munts",3,"./img/nelson.jpg",16,4,4,4,4);
+
+notas_matematica={primer:7,segundo:7,tercer:undefined};
+notas_fisica={primer:7,segundo:7,tercer:undefined};
+notas_historia={primer:7,segundo:7,tercer:undefined};
+notas_quimica={primer:7,segundo:7,tercer:undefined};
+nuevo_alumno=new Alumno("Nelson","Munts",3,"./img/nelson.jpg",16,notas_historia,notas_matematica,notas_fisica,notas_quimica,4996633);
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Lisa","Simpsons",4,"./img/lisa.jpg",16,4,4,4,4);
+
+notas_matematica={primer:10,segundo:10,tercer:undefined};
+notas_fisica={primer:10,segundo:10,tercer:undefined};
+notas_historia={primer:10,segundo:10,tercer:undefined};
+notas_quimica={primer:10,segundo:10,tercer:undefined};
+nuevo_alumno=new Alumno("Lisa","Simpsons",4,"./img/lisa.jpg",16,notas_historia,notas_matematica,notas_fisica,notas_quimica,4433221);
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Erin","Summer",5,"./img/erin.jpg",17,4,4,4,4);
+
+notas_matematica={primer:5,segundo:8,tercer:undefined};
+notas_fisica={primer:6,segundo:7,tercer:undefined};
+notas_historia={primer:5,segundo:6,tercer:undefined};
+notas_quimica={primer:3,segundo:6,tercer:undefined};
+nuevo_alumno=new Alumno("Erin","Summer",5,"./img/erin.jpg",17,notas_historia,notas_matematica,notas_fisica,notas_quimica,4212121);
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Milhouse","Van Houten",6,"./img/milhouse.jpg",16,4,4,4,4);
+
+notas_matematica={primer:5,segundo:5,tercer:undefined};
+notas_fisica={primer:5,segundo:5,tercer:undefined};
+notas_historia={primer:5,segundo:6,tercer:undefined};
+notas_quimica={primer:5,segundo:6,tercer:undefined};
+nuevo_alumno=new Alumno("Milhouse","Van Houten",6,"./img/milhouse.jpg",16,notas_historia,notas_matematica,notas_fisica,notas_quimica,4998877);
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Maggie","Simpsons",7,"./img/magui.jpg",15,4,4,4,4);
+
+notas_matematica={primer:8,segundo:8,tercer:undefined};
+notas_fisica={primer:8,segundo:8,tercer:undefined};
+notas_historia={primer:8,segundo:8,tercer:undefined};
+notas_quimica={primer:8,segundo:8,tercer:undefined};
+nuevo_alumno=new Alumno("Maggie","Simpsons",7,"./img/magui.jpg",15,notas_historia,notas_matematica,notas_fisica,notas_quimica,4665544);
 Alumnos.push(nuevo_alumno);
-nuevo_alumno=new Alumno("Homero","Simpsons",8,"./img/homero.jpg",16,4,4,4,4);
+
+notas_matematica={primer:3,segundo:3,tercer:undefined};
+notas_fisica={primer:3,segundo:3,tercer:undefined};
+notas_historia={primer:3,segundo:3,tercer:undefined};
+notas_quimica={primer:3,segundo:3,tercer:undefined};
+nuevo_alumno=new Alumno("Homero","Simpsons",8,"./img/homero.jpg",16,notas_historia,notas_matematica,notas_fisica,notas_quimica,4332211);
 Alumnos.push(nuevo_alumno);
 
 
@@ -124,7 +295,7 @@ nuevo_profesor=new Profesor(112,"Dewey","Largo","./img/deweylargo.jpg","Fisica",
 Profesores.push(nuevo_profesor);
 nuevo_profesor=new Profesor(113,"Coach","Krupt","./img/krupt.jpg","Historia",38,012152);
 Profesores.push(nuevo_profesor);
-nuevo_profesor=new Profesor(114,"Elizabeth","Hoveer","./img/elizabeth.jpg","Qumica",41,023456);
+nuevo_profesor=new Profesor(114,"Elizabeth","Hoveer","./img/elizabeth.jpg","Quimica",41,023456);
 Profesores.push(nuevo_profesor);
 //            ADMINISTRADORES
 let administradores=[];
@@ -198,9 +369,7 @@ let body_login=document.getElementById("body");
 let titulo=document.getElementById("titulo");
 let div_contenedor=document.getElementById("contenedor");
 let formulario=document.getElementById("formulario");
-console.log(formulario);
-console.log(Alumnos);
-console.log(identificar_usuario(1,Alumnos));
+
 
 
 // FUNCTION CREAR REGISTRO
@@ -272,30 +441,26 @@ registro.addEventListener("click",(e)=>{
             usuario:verificar_input_radio()
         }
         if(usuarios_registrados.findIndex(objeto=>objeto.dni==register_data.dni)!==-1){              // CHEQUEO QUE EL DNI NO SE ENCUENTRE YA REGISTRADO //  INTENTE HACER if(dni_check(register_data.dni)!==-1)
-            console.log(dni_check(register_data.dni));      //                                                      CON LA FUNCION QUE HABIA CREADO,PERO ME DEVUELVE UNDEFINED 
+    //                                                                                                   CON LA FUNCION QUE HABIA CREADO,PERO ME DEVUELVE UNDEFINED 
             alert("Tu dni ya se encuentra registrado");
-            console.log(dni_check(register_data.dni));
         }
         else{
-            
-            
             if(register_data.usuario=="alumno"){
                 let dni_info=(Alumnos.findIndex(objeto=>objeto.dni==register_data.dni));
                 if(dni_info==-1){
                     alert("Lo siento,al parecer no eres alumno de la institucion.Si esto es un error contactate con un administrador");
                 }
                 else{
+                    let nuevo_usuario=new Usuario(register_data.dni,register_data.contraseña,register_data.email,false,false);
+                    usuarios_registrados.push(nuevo_usuario);
+                    let usuarios_registrados_json=JSON.stringify(usuarios_registrados);
+                    localStorage.setItem("usuarios",usuarios_registrados_json);
                     alert("Tu cuenta de Alumno ha sido registrada,ya puedes ingresar");
                 }
             }
             else if(register_data.usuario=="profesor"){
                 let dni_info=(Profesores.findIndex(objeto=>objeto.dni==register_data.dni));
                 if (dni_info==-1){
-                    let nuevo_usuario=new Usuario(register_data.dni,register_data.contraseña,register_data.email,false,false);
-                    usuarios_registrados.push(nuevo_usuario);
-                    console.log(usuarios_registrados[5]);
-                    let usuarios_registrados_json=JSON.stringify(usuarios_registrados);
-                    localStorage.setItem("usuarios",usuarios_registrados_json);
                     alert("Lo siento,al parecer no eres Profesor de la institucion.Si esto es un error contactate con un administrador");
                 }
                 else{
@@ -332,6 +497,7 @@ function crear_header(nombre,apellido,ruta,edad,nro_contacto,dni){
     let header_login=document.createElement("HEADER");
     header_login.setAttribute("id","header_login");
     header_login.classList.add("header_login");
+    header_login.classList.add(nombre);
     
     //CREAR IMAGEN DE PERFIL
     let img=document.createElement("IMG");
@@ -397,10 +563,195 @@ function anuncios_director(){
     caja_de_anuncios.appendChild(caja_parrafo);
     section_alumnos.appendChild(caja_de_anuncios);
 }
+// FUNCION EVENTO ALUMNOS, VER MAS
+function evento(e){
+
+        if(e.target.tagName=="BUTTON" && e.target.classList[1] !== undefined){
+            let alumno=Alumnos.find(objeto=>objeto.nombre==e.target.classList[1]);
+            console.log(alumno);
+            let caja=document.getElementById(alumno.nombre);
+            let user=Profesores.find(objeto=>objeto.nombre==((e.target.parentNode).parentNode.parentNode.parentNode.parentNode.children[2].classList[1]));
+            caja.removeChild(caja.lastChild);
+            caja.removeChild(caja.lastChild);
+            let h3_dni=document.createElement("H3")
+    h3_dni.classList.add("alumno_dni");
+    h3_dni.innerHTML= "DNI : "+alumno.dni
+    let h3_nro_contacto=document.createElement("H3");
+    h3_nro_contacto.classList.add("alumno_nro_contacto");
+    h3_nro_contacto.innerHTML= "Tell : "+alumno.nro_contacto;
+
+    let notas_ul=document.createElement("UL");
+    notas_ul.classList.add("alumno_lista");
+
+    let uno_ul=document.createElement("LI");
+    uno_ul.classList.add("alumno_ul");
+    let dos_ul=document.createElement("LI");
+    dos_ul.classList.add("alumno_ul");
+    let tres_ul=document.createElement("LI");
+    tres_ul.classList.add("alumno_ul");
+
+    if (user.asignatura=="Matematica"){
+        console.log(alumno);
+        console.log(alumno.nota_matematicas);
+        console.log(alumno.get_notas_matematica("primer"));
+        uno_ul.innerHTML=alumno.get_notas_matematica("primer");
+        dos_ul.innerHTML=alumno.get_notas_matematica("segundo");
+        tres_ul.innerHTML=alumno.get_notas_matematica("tercer");
+    }
+    else if(user.asignatura=="Fisica"){
+        uno_ul.innerHTML=alumno.get_notas_fisica("primer");
+        dos_ul.innerHTML=alumno.get_notas_fisica("segundo");
+        tres_ul.innerHTML=alumno.get_notas_fisica("tercer");
+    }
+    else if(user.asignatura=="Quimica"){
+        uno_ul.innerHTML=alumno.get_notas_quimica("primer");
+        dos_ul.innerHTML=alumno.get_notas_quimica("segundo");
+        tres_ul.innerHTML=alumno.get_notas_quimica("tercer");
+    }
+    else{
+        uno_ul.innerHTML=alumno.get_notas_historia("primer");
+        dos_ul.innerHTML=alumno.get_notas_historia("segundo");
+        tres_ul.innerHTML=alumno.get_notas_historia("tercer");
+    }
+    let asignar_notas=document.createElement("BUTTON");
+    asignar_notas.classList.add(alumno.dni)
+    asignar_notas.setAttribute("id","asignar_notas");
+    asignar_notas.innerHTML="Asignar Notas";
+    caja.appendChild(h3_dni);
+    caja.appendChild(h3_nro_contacto);
+    notas_ul.appendChild(uno_ul);
+    notas_ul.appendChild(dos_ul);
+    notas_ul.appendChild(tres_ul);
+    caja.appendChild(notas_ul);
+    caja.appendChild(asignar_notas);
+        }
+    }
+// FUNCION EVENTO MODIFICAR NOTAS
+function modifcar_notas(e){
+    
+    if(e.target.tagName=="BUTTON"&&e.target.id=="asignar_notas"){
+        let alumno= Alumnos.find(alumno=>alumno.dni==e.target.classList[0]);
+        let caja=document.getElementById(alumno.nombre);
+        caja.removeChild(caja.lastChild);
+        caja.removeChild(caja.lastChild);
+        caja.removeChild(caja.lastChild);
+        caja.removeChild(caja.lastChild);
+        let h3_notas=document.createElement("H3");
+        h3_notas.innerHTML="NOTAS";
+        h3_notas.classList.add("h3_notas");
+        let form_notas=document.createElement("FORM");
+        form_notas.classList.add("form_notas");
+        let label_nota_uno=document.createElement("LABEL");
+        label_nota_uno.classList.add("label_notas");
+        let label_nota_dos=document.createElement("LABEL");
+        label_nota_dos.classList.add("label_notas");
+        let label_nota_tres=document.createElement("LABEL");
+        label_nota_tres.classList.add("label_notas");
+        let icon_uno=document.createElement("I");
+        icon_uno.classList.add("fa-solid");
+        icon_uno.classList.add("fa-square-check");
+        let icon_dos=document.createElement("I");
+        icon_dos.classList.add("fa-solid");
+        icon_dos.classList.add("fa-square-check");
+        let icon_tres=document.createElement("I");
+        icon_tres.classList.add("fa-solid");
+        icon_tres.classList.add("fa-square-check");
+        let input_uno=document.createElement("INPUT");
+        input_uno.classList.add("input_notas");
+        input_uno.type="number";
+        input_uno.min="0";
+        input_uno.max="10";
+        let input_dos=document.createElement("INPUT");
+        input_dos.classList.add("input_notas");
+        input_dos.type="number";
+        input_dos.min="0";
+        input_dos.max="10";
+        let input_tres=document.createElement("INPUT");
+        input_tres.classList.add("input_notas");
+        input_tres.type="number";
+        input_tres.min="0";
+        input_tres.max="10";
+        let enviar_notas=document.createElement("INPUT");
+        enviar_notas.type="submit"
+        enviar_notas.setAttribute("id","enviar_notas");
+        enviar_notas.innerHTML="Enviar";
+        enviar_notas.classList.add("enviar_notas");
+        let icon_segundo=document.createElement("I");
+        icon_segundo.classList.add("fa-solid");
+        icon_segundo.classList.add("fa-2");
+        
+        let icon_tercero=document.createElement("I");
+        icon_tercero.classList.add("fa-solid");
+        icon_tercero.classList.add("fa-3");
+        let icon_primer=document.createElement("I");
+        icon_primer.classList.add("fa-solid");
+        icon_primer.classList.add("fa-1");
+        
+        label_nota_uno.appendChild(icon_primer);
+        label_nota_uno.appendChild(input_uno);
+        label_nota_uno.appendChild(icon_uno);
+        label_nota_dos.appendChild(icon_segundo);
+        label_nota_dos.appendChild(input_dos);
+        label_nota_dos.appendChild(icon_dos);
+        label_nota_tres.appendChild(icon_tercero);
+        label_nota_tres.appendChild(input_tres);
+        label_nota_tres.appendChild(icon_tres);
+        
+
+        form_notas.appendChild(h3_notas);
+        form_notas.appendChild(label_nota_uno);
+        form_notas.appendChild(label_nota_dos);
+        form_notas.appendChild(label_nota_tres);
+        form_notas.appendChild(enviar_notas);
+        caja.appendChild(form_notas);
+    }
+}
+//FUNCION EVENTO ENVIAR_NOTAS
+function enviar_notas(e){
+    if(e.target.tagName=="INPUT" && e.target.type=="submit"){
+        e.preventDefault();
+        let caja=e.target.parentNode.parentNode;
+        let alumno=Alumnos.find(object=>object.nombre==caja.id);
+        console.log(caja.children);
+        let inputs=caja.getElementsByClassName("input_notas");
+        console.log(inputs[0].value);
+        console.log(inputs[1].value);
+        console.log(inputs[2].value);
+    //               =>   section =>  Body
+        let user=body_login.getElementsByClassName("header_login")[0];
+        
+        let profesor=Profesores.find(object=>object.nombre==user.classList[1]);
+        
+        if (profesor.asignatura=="Matematica"){
+            alumno.nota_matematicas.primer=inputs[0].value
+            alumno.nota_matematicas.segundo=inputs[1].value
+            alumno.nota_matematicas.tercer=inputs[2].value
+            let alumnos_json=JSON.stringify(Alumnos);
+            localStorage.setItem("alumnos",alumnos_json);
+            console.log(alumno.nota_matematicas);
+        }
+        else if(profesor.asignatura=="Fisica"){
+            alumno.nota_fisica.primer=inputs[0].value
+            alumno.nota_fisica.segundo=inputs[1].value
+            alumno.nota_fisica.tercer=inputs[2].value
+        }
+        else if(profesor.asignatura=="Quimica"){
+            alumno.nota_quimica.primer=inputs[0].value
+            alumno.nota_quimica.segundo=inputs[1].value
+            alumno.nota_quimica.tercer=inputs[2].value
+        }
+        else{
+            alumno.nota_historia.primer=inputs[0].value
+            alumno.nota_historia.segundo=inputs[1].value
+            alumno.nota_historia.tercer=inputs[2].value
+        }
+    }
+}
 // FUNCION ALUMNOS CARD
 function card_alumnos(nombre,apellido,ruta){
     let card_alumno=document.createElement("DIV");
     card_alumno.classList.add("alumno");
+    card_alumno.setAttribute("id",nombre)
     let h2_alumno=document.createElement("H2");
     h2_alumno.innerHTML=nombre+" "+apellido;
     h2_alumno.classList.add("alumno_h2");
@@ -412,6 +763,7 @@ function card_alumnos(nombre,apellido,ruta){
     let button_alumno=document.createElement("BUTTON");
     button_alumno.classList.add("button_alumno");
     button_alumno.innerHTML="Mas info"
+    button_alumno.classList.add(nombre);
     caja_alumnos.appendChild(card_alumno);
     card_alumno.appendChild(h2_alumno);
     card_alumno.appendChild(img_alumno);
@@ -421,6 +773,12 @@ function card_alumnos(nombre,apellido,ruta){
 function buscar_objeto(lista,dni){
     lista.find(objeto=>objeto.dni=dni);
 }
+let storage_alumnos=JSON.parse(localStorage.getItem("alumnos"));
+if(storage_alumnos!==null){
+    Alumnos=storage_alumnos;
+}
+console.log(storage_alumnos);
+console.log(Alumnos);
 
 boton_entrar.addEventListener("click",(e)=>{
     e.preventDefault();
@@ -438,7 +796,7 @@ boton_entrar.addEventListener("click",(e)=>{
             body_login.removeChild(div_contenedor);
             body_login.classList.remove("body_login");
             body_login.classList.add("body_logeado");
-            let user=Profesores.find(objeto=>objeto.dni==usuario.dni)
+            let user=Profesores.find(objeto=>objeto.dni==usuario.dni);
             crear_header(user.nombre,user.apellido,user.img,user.edad,user.nro_contacto,user.dni);
             let crear_section=document.createElement("SECTION");
             crear_section.classList.add("section_alumnos");
@@ -457,7 +815,12 @@ boton_entrar.addEventListener("click",(e)=>{
             
             Alumnos.forEach(element => {
                 card_alumnos(element.nombre,element.apellido,element.img);
+                let boton_mas_info=document.getElementById(element.nombre);
+                let modificar_notas=document.getElementById(element.nombre);
             });
+            caja_alumnos.addEventListener("click",evento);
+            caja_alumnos.addEventListener("click",modifcar_notas);
+            caja_alumnos.addEventListener("click",enviar_notas);
         }
         else if(es_administrador(data.dni,usuarios_registrados)){       //LOGIN USUARIO ADMINISTRADOR
             usuario=identificar_usuario(data.dni,administradores)
@@ -514,7 +877,387 @@ boton_entrar.addEventListener("click",(e)=>{
             usuario=identificar_usuario(data.dni,Alumnos);
             console.log("Bienvenido/a Alumno/a : " +usuario.nombre+" "+usuario.apellido );
             body_login.removeChild(div_contenedor);
+            body_login.classList.remove("body_login");
+            body_login.classList.add("body_logeado");
+            let user=Alumnos.find(objeto=>objeto.dni==usuario.dni);
+            crear_header(user.nombre,user.apellido,user.img,user.edad,user.nro_contacto,user.dni);
             crear_seccion_alumnos();
+            let matematica=document.getElementById("matematica");
+            matematica.addEventListener("click",(e)=>{
+                // CAPTURO INFORMACION DEL PROFESOR DE MATEMATICA
+                let profesor_matematica=Profesores.find(profesor=>profesor.asignatura=="Matematica");
+                //CAPTURO INFORMACION DEL OBJETO MATERIA MATEMATICA
+                let materia=Materias.find(materia=>materia.area=="matematica");
+                //LIMPIO ETIQUETA BODY
+                body_login.removeChild(body_login.lastChild);
+                // ETIQUETAS HTML
+                let section_asignatura=document.createElement("SECTION");
+                section_asignatura.classList.add("section_asignatura");
+                let h1_asignatura=document.createElement("H1");
+                h1_asignatura.classList.add("h1_asignatura")
+                h1_asignatura.innerHTML="MATEMATICAS";
+                let primer_contenedor=document.createElement("DIV");
+                primer_contenedor.classList.add("primer_contenedor");
+                // LLAMO FUNCION CAJA DE H2
+                caja_h2("Profesor","TUS NOTAS",primer_contenedor);
+
+                // CREO FUNCION CAJA  => CREA MIS DIV DE INFORMACIONES
+                function caja(ruta,info_uno,info_dos,info_tres,titulo){
+                    let caja=document.createElement("DIV");
+                    caja.classList.add("caja_contenedora");
+                    let caja_img=document.createElement("IMG");
+                    caja_img.src=ruta;
+                    caja_img.classList.add("img");
+                    let caja_info=document.createElement("DIV");
+                    caja_info.classList.add("caja_info");
+                    
+                
+                    let h3_info=document.createElement("H3");
+                    h3_info.classList.add("h3_info");
+                    h3_info.innerHTML=titulo
+                    
+                    let ul_info=document.createElement("UL");
+                    ul_info.classList.add("ul_info");
+                    
+                    let li_uno=document.createElement("LI");
+                    li_uno.classList.add("li_info");
+                    li_uno.innerHTML=info_uno
+                
+                    let li_dos=document.createElement("LI");
+                    li_dos.classList.add("li_info");
+                    li_dos.innerHTML=info_dos
+                
+                    let li_tres=document.createElement("LI");
+                    li_tres.classList.add("li_info");
+                    li_tres.innerHTML=info_tres
+                
+                    ul_info.appendChild(li_uno);
+                    ul_info.appendChild(li_dos);
+                    ul_info.appendChild(li_tres);
+                
+                    caja_info.appendChild(h3_info);
+                    caja_info.appendChild(ul_info);
+                
+                    caja.appendChild(caja_img);
+                    caja.appendChild(caja_info);
+                    if(cajas!==undefined){
+                        cajas.appendChild(caja);
+                    }
+                    else{
+                        cajas2.appendChild(caja);
+                    }
+
+                }
+                //ETIQUETA HTML
+                let  cajas=document.createElement("DIV");
+                cajas.classList.add("cajas");
+                //LLAMO FUNCION PARA CREA CAJA DE INFORMACION ===> DATOS DEL PROFESOR
+                caja(profesor_matematica.img,"Dni :"+profesor_matematica.dni,"Edad: "+profesor_matematica.edad,"Contacto : "+profesor_matematica.nro_contacto,profesor_matematica.nombre+" "+profesor_matematica.apellido,);
+                //LLAMO FUNCION PARA CREAR CAJA DE INFORMACION ==> NOTAS DE EXAMENES
+                caja("./img/notas.jpg",user.get_notas_matematica("primer"),user.get_notas_matematica("segundo"),user.get_notas_matematica("tercer"),"Trimestres");
+                //AGREGO CAJAS AL PRIMER CONTENEDOR
+                primer_contenedor.appendChild(cajas);
+                cajas=undefined; //CAMBIO EL VALOR A UNDEFINED PARA PODER USAR LA 2DA CONDICION DE MI FUNCION CAJA
+                let segundo_contenedor=document.createElement("DIV");// CREO EL SEGUNDO CONTENEDOR
+                segundo_contenedor.classList.add("primer_contenedor");
+                let cajas2=document.createElement("DIV");
+                cajas2.classList.add("cajas");
+                // FUNCION CAJA DE H2 PARA EL SEGUNDO CONTENEDOR
+                caja_h2("Proximo Examen","Material de Estudio",segundo_contenedor);
+                // FUNCION CAJA PARA CREAR INFORMACION ===> PROXIMO EXAMEN
+                caja("./img/calendarios.jpg",materia.temas.tema_uno,materia.temas.tema_dos,materia.temas.tema_tres,materia.proximo_examen);
+                //FUNCION CAJA PARA CREAR INFORMACION ===> MATERIAL DE ESTUDIO
+                caja("./img/libros.jpg",materia.material_estudio.libro_uno,materia.material_estudio.libro_dos,materia.material_estudio.libro_tres,"LIBROS");
+                // ASIGNO PADRES E HIJOS
+                segundo_contenedor.appendChild(cajas2)
+                section_asignatura.appendChild(h1_asignatura);
+                section_asignatura.appendChild(primer_contenedor);
+                section_asignatura.appendChild(segundo_contenedor);
+                body_login.appendChild(section_asignatura);
+                
+            })
+            let fisica=document.getElementById("fisica");
+            fisica.addEventListener("click",(e)=>{
+                // CAPTURO INFORMACION DEL PROFESOR DE FISICA
+                let profesor_fisica=Profesores.find(profesor=>profesor.asignatura=="Fisica");
+                //CAPTURO INFORMACION DEL OBJETO MATERIA MATEMATICA
+                let materia=Materias.find(materia=>materia.area=="fisica");
+                //LIMPIO ETIQUETA BODY
+                body_login.removeChild(body_login.lastChild);
+                // ETIQUETAS HTML
+                let section_asignatura=document.createElement("SECTION");
+                section_asignatura.classList.add("section_asignatura");
+                let h1_asignatura=document.createElement("H1");
+                h1_asignatura.classList.add("h1_asignatura")
+                h1_asignatura.innerHTML="FISICA";
+                let primer_contenedor=document.createElement("DIV");
+                primer_contenedor.classList.add("primer_contenedor");
+                // LLAMO FUNCION CAJA DE H2
+                caja_h2("Profesor","TUS NOTAS",primer_contenedor);
+
+                // CREO FUNCION CAJA  => CREA MIS DIV DE INFORMACIONES
+                function caja(ruta,info_uno,info_dos,info_tres,titulo){
+                    let caja=document.createElement("DIV");
+                    caja.classList.add("caja_contenedora");
+                    let caja_img=document.createElement("IMG");
+                    caja_img.src=ruta;
+                    caja_img.classList.add("img");
+                    let caja_info=document.createElement("DIV");
+                    caja_info.classList.add("caja_info");
+                    
+                
+                    let h3_info=document.createElement("H3");
+                    h3_info.classList.add("h3_info");
+                    h3_info.innerHTML=titulo
+                    
+                    let ul_info=document.createElement("UL");
+                    ul_info.classList.add("ul_info");
+                    
+                    let li_uno=document.createElement("LI");
+                    li_uno.classList.add("li_info");
+                    li_uno.innerHTML=info_uno
+                
+                    let li_dos=document.createElement("LI");
+                    li_dos.classList.add("li_info");
+                    li_dos.innerHTML=info_dos
+                
+                    let li_tres=document.createElement("LI");
+                    li_tres.classList.add("li_info");
+                    li_tres.innerHTML=info_tres
+                
+                    ul_info.appendChild(li_uno);
+                    ul_info.appendChild(li_dos);
+                    ul_info.appendChild(li_tres);
+                
+                    caja_info.appendChild(h3_info);
+                    caja_info.appendChild(ul_info);
+                
+                    caja.appendChild(caja_img);
+                    caja.appendChild(caja_info);
+                    if(cajas!==undefined){
+                        cajas.appendChild(caja);
+                    }
+                    else{
+                        cajas2.appendChild(caja);
+                    }
+
+                }
+                //ETIQUETA HTML
+                let  cajas=document.createElement("DIV");
+                cajas.classList.add("cajas");
+                //LLAMO FUNCION PARA CREA CAJA DE INFORMACION ===> DATOS DEL PROFESOR
+                caja(profesor_fisica.img,"Dni :"+profesor_fisica.dni,"Edad: "+profesor_fisica.edad,"Contacto : "+profesor_fisica.nro_contacto,profesor_fisica.nombre+" "+profesor_fisica.apellido,);
+                //LLAMO FUNCION PARA CREAR CAJA DE INFORMACION ==> NOTAS DE EXAMENES
+                caja("./img/notas.jpg",user.get_notas_fisica("primer"),user.get_notas_fisica("segundo"),user.get_notas_fisica("tercer"),"Trimestres");
+                //AGREGO CAJAS AL PRIMER CONTENEDOR
+                primer_contenedor.appendChild(cajas);
+                cajas=undefined; //CAMBIO EL VALOR A UNDEFINED PARA PODER USAR LA 2DA CONDICION DE MI FUNCION CAJA
+                let segundo_contenedor=document.createElement("DIV");// CREO EL SEGUNDO CONTENEDOR
+                segundo_contenedor.classList.add("primer_contenedor");
+                let cajas2=document.createElement("DIV");
+                cajas2.classList.add("cajas");
+                // FUNCION CAJA DE H2 PARA EL SEGUNDO CONTENEDOR
+                caja_h2("Proximo Examen","Material de Estudio",segundo_contenedor);
+                // FUNCION CAJA PARA CREAR INFORMACION ===> PROXIMO EXAMEN
+                caja("./img/calendarios.jpg",materia.temas.tema_uno,materia.temas.tema_dos,materia.temas.tema_tres,materia.proximo_examen);
+                //FUNCION CAJA PARA CREAR INFORMACION ===> MATERIAL DE ESTUDIO
+                caja("./img/libros.jpg",materia.material_estudio.libro_uno,materia.material_estudio.libro_dos,materia.material_estudio.libro_tres,"LIBROS");
+                // ASIGNO PADRES E HIJOS
+                segundo_contenedor.appendChild(cajas2)
+                section_asignatura.appendChild(h1_asignatura);
+                section_asignatura.appendChild(primer_contenedor);
+                section_asignatura.appendChild(segundo_contenedor);
+                body_login.appendChild(section_asignatura);
+                
+            })
+            let quimica=document.getElementById("quimica");
+            quimica.addEventListener("click",(e)=>{
+                // CAPTURO INFORMACION DEL PROFESOR DE QUIMICA
+                let profesor_quimica=Profesores.find(profesor=>profesor.asignatura=="Quimica");
+                //CAPTURO INFORMACION DEL OBJETO MATERIA QUIMICA
+                let materia=Materias.find(materia=>materia.area=="quimica");
+                //LIMPIO ETIQUETA BODY
+                body_login.removeChild(body_login.lastChild);
+                // ETIQUETAS HTML
+                let section_asignatura=document.createElement("SECTION");
+                section_asignatura.classList.add("section_asignatura");
+                let h1_asignatura=document.createElement("H1");
+                h1_asignatura.classList.add("h1_asignatura")
+                h1_asignatura.innerHTML="QUIMICA";
+                let primer_contenedor=document.createElement("DIV");
+                primer_contenedor.classList.add("primer_contenedor");
+                // LLAMO FUNCION CAJA DE H2
+                caja_h2("Profesor","TUS NOTAS",primer_contenedor);
+
+                // CREO FUNCION CAJA  => CREA MIS DIV DE INFORMACIONES
+                function caja(ruta,info_uno,info_dos,info_tres,titulo){
+                    let caja=document.createElement("DIV");
+                    caja.classList.add("caja_contenedora");
+                    let caja_img=document.createElement("IMG");
+                    caja_img.src=ruta;
+                    caja_img.classList.add("img");
+                    let caja_info=document.createElement("DIV");
+                    caja_info.classList.add("caja_info");
+                    
+                
+                    let h3_info=document.createElement("H3");
+                    h3_info.classList.add("h3_info");
+                    h3_info.innerHTML=titulo
+                    
+                    let ul_info=document.createElement("UL");
+                    ul_info.classList.add("ul_info");
+                    
+                    let li_uno=document.createElement("LI");
+                    li_uno.classList.add("li_info");
+                    li_uno.innerHTML=info_uno
+                
+                    let li_dos=document.createElement("LI");
+                    li_dos.classList.add("li_info");
+                    li_dos.innerHTML=info_dos
+                
+                    let li_tres=document.createElement("LI");
+                    li_tres.classList.add("li_info");
+                    li_tres.innerHTML=info_tres
+                
+                    ul_info.appendChild(li_uno);
+                    ul_info.appendChild(li_dos);
+                    ul_info.appendChild(li_tres);
+                
+                    caja_info.appendChild(h3_info);
+                    caja_info.appendChild(ul_info);
+                
+                    caja.appendChild(caja_img);
+                    caja.appendChild(caja_info);
+                    if(cajas!==undefined){
+                        cajas.appendChild(caja);
+                    }
+                    else{
+                        cajas2.appendChild(caja);
+                    }
+
+                }
+                //ETIQUETA HTML
+                let  cajas=document.createElement("DIV");
+                cajas.classList.add("cajas");
+                //LLAMO FUNCION PARA CREA CAJA DE INFORMACION ===> DATOS DEL PROFESOR
+                caja(profesor_quimica.img,"Dni :"+profesor_quimica.dni,"Edad: "+profesor_quimica.edad,"Contacto : "+profesor_quimica.nro_contacto,profesor_quimica.nombre+" "+profesor_quimica.apellido,);
+                //LLAMO FUNCION PARA CREAR CAJA DE INFORMACION ==> NOTAS DE EXAMENES
+                caja("./img/notas.jpg",user.get_notas_quimica("primer"),user.get_notas_quimica("segundo"),user.get_notas_quimica("tercer"),"Trimestres");
+                //AGREGO CAJAS AL PRIMER CONTENEDOR
+                primer_contenedor.appendChild(cajas);
+                cajas=undefined; //CAMBIO EL VALOR A UNDEFINED PARA PODER USAR LA 2DA CONDICION DE MI FUNCION CAJA
+                let segundo_contenedor=document.createElement("DIV");// CREO EL SEGUNDO CONTENEDOR
+                segundo_contenedor.classList.add("primer_contenedor");
+                let cajas2=document.createElement("DIV");
+                cajas2.classList.add("cajas");
+                // FUNCION CAJA DE H2 PARA EL SEGUNDO CONTENEDOR
+                caja_h2("Proximo Examen","Material de Estudio",segundo_contenedor);
+                // FUNCION CAJA PARA CREAR INFORMACION ===> PROXIMO EXAMEN
+                caja("./img/calendarios.jpg",materia.temas.tema_uno,materia.temas.tema_dos,materia.temas.tema_tres,materia.proximo_examen);
+                //FUNCION CAJA PARA CREAR INFORMACION ===> MATERIAL DE ESTUDIO
+                caja("./img/libros.jpg",materia.material_estudio.libro_uno,materia.material_estudio.libro_dos,materia.material_estudio.libro_tres,"LIBROS");
+                // ASIGNO PADRES E HIJOS
+                segundo_contenedor.appendChild(cajas2)
+                section_asignatura.appendChild(h1_asignatura);
+                section_asignatura.appendChild(primer_contenedor);
+                section_asignatura.appendChild(segundo_contenedor);
+                body_login.appendChild(section_asignatura);
+                
+            })
+            let historia=document.getElementById("historia");
+            historia.addEventListener("click",(e)=>{
+                // CAPTURO INFORMACION DEL PROFESOR DE QUIMICA
+                let profesor_historia=Profesores.find(profesor=>profesor.asignatura=="Historia");
+                //CAPTURO INFORMACION DEL OBJETO MATERIA QUIMICA
+                let materia=Materias.find(materia=>materia.area=="historia");
+                //LIMPIO ETIQUETA BODY
+                body_login.removeChild(body_login.lastChild);
+                // ETIQUETAS HTML
+                let section_asignatura=document.createElement("SECTION");
+                section_asignatura.classList.add("section_asignatura");
+                let h1_asignatura=document.createElement("H1");
+                h1_asignatura.classList.add("h1_asignatura")
+                h1_asignatura.innerHTML="HISTORIA";
+                let primer_contenedor=document.createElement("DIV");
+                primer_contenedor.classList.add("primer_contenedor");
+                // LLAMO FUNCION CAJA DE H2
+                caja_h2("Profesor","TUS NOTAS",primer_contenedor);
+
+                // CREO FUNCION CAJA  => CREA MIS DIV DE INFORMACIONES
+                function caja(ruta,info_uno,info_dos,info_tres,titulo){
+                    let caja=document.createElement("DIV");
+                    caja.classList.add("caja_contenedora");
+                    let caja_img=document.createElement("IMG");
+                    caja_img.src=ruta;
+                    caja_img.classList.add("img");
+                    let caja_info=document.createElement("DIV");
+                    caja_info.classList.add("caja_info");
+                    
+                
+                    let h3_info=document.createElement("H3");
+                    h3_info.classList.add("h3_info");
+                    h3_info.innerHTML=titulo
+                    
+                    let ul_info=document.createElement("UL");
+                    ul_info.classList.add("ul_info");
+                    
+                    let li_uno=document.createElement("LI");
+                    li_uno.classList.add("li_info");
+                    li_uno.innerHTML=info_uno
+                
+                    let li_dos=document.createElement("LI");
+                    li_dos.classList.add("li_info");
+                    li_dos.innerHTML=info_dos
+                
+                    let li_tres=document.createElement("LI");
+                    li_tres.classList.add("li_info");
+                    li_tres.innerHTML=info_tres
+                
+                    ul_info.appendChild(li_uno);
+                    ul_info.appendChild(li_dos);
+                    ul_info.appendChild(li_tres);
+                
+                    caja_info.appendChild(h3_info);
+                    caja_info.appendChild(ul_info);
+                
+                    caja.appendChild(caja_img);
+                    caja.appendChild(caja_info);
+                    if(cajas!==undefined){
+                        cajas.appendChild(caja);
+                    }
+                    else{
+                        cajas2.appendChild(caja);
+                    }
+
+                }
+                //ETIQUETA HTML
+                let  cajas=document.createElement("DIV");
+                cajas.classList.add("cajas");
+                //LLAMO FUNCION PARA CREA CAJA DE INFORMACION ===> DATOS DEL PROFESOR
+                caja(profesor_historia.img,"Dni :"+profesor_historia.dni,"Edad: "+profesor_historia.edad,"Contacto : "+profesor_historia.nro_contacto,profesor_historia.nombre+" "+profesor_historia.apellido,);
+                //LLAMO FUNCION PARA CREAR CAJA DE INFORMACION ==> NOTAS DE EXAMENES
+                caja("./img/notas.jpg",user.get_notas_historia("primer"),user.get_notas_historia("segundo"),user.get_notas_historia("tercer"),"Trimestres");
+                //AGREGO CAJAS AL PRIMER CONTENEDOR
+                primer_contenedor.appendChild(cajas);
+                cajas=undefined; //CAMBIO EL VALOR A UNDEFINED PARA PODER USAR LA 2DA CONDICION DE MI FUNCION CAJA
+                let segundo_contenedor=document.createElement("DIV");// CREO EL SEGUNDO CONTENEDOR
+                segundo_contenedor.classList.add("primer_contenedor");
+                let cajas2=document.createElement("DIV");
+                cajas2.classList.add("cajas");
+                // FUNCION CAJA DE H2 PARA EL SEGUNDO CONTENEDOR
+                caja_h2("Proximo Examen","Material de Estudio",segundo_contenedor);
+                // FUNCION CAJA PARA CREAR INFORMACION ===> PROXIMO EXAMEN
+                caja("./img/calendarios.jpg",materia.temas.tema_uno,materia.temas.tema_dos,materia.temas.tema_tres,materia.proximo_examen);
+                //FUNCION CAJA PARA CREAR INFORMACION ===> MATERIAL DE ESTUDIO
+                caja("./img/libros.jpg",materia.material_estudio.libro_uno,materia.material_estudio.libro_dos,materia.material_estudio.libro_tres,"LIBROS");
+                // ASIGNO PADRES E HIJOS
+                segundo_contenedor.appendChild(cajas2)
+                section_asignatura.appendChild(h1_asignatura);
+                section_asignatura.appendChild(primer_contenedor);
+                section_asignatura.appendChild(segundo_contenedor);
+                body_login.appendChild(section_asignatura);
+                
+            })
         }
     }
     else{                                           //USUARIO NO ESTA REGISTRADO
@@ -534,52 +1277,73 @@ function creando_card(){
     card_tres.classList.add("card");
     div_cards.appendChild(card_tres);
 }
-console.log(Profesores);
-/*(Alumnos.find(Alumno=>Alumno.nombre=="rafa")).nota_musica=15;
-console.log(rafa.nota_musica);*/
 
 
-//FUNCIONES
+//FUNCION CAJA DE LA SECCION ALUMNOS/MATERIAS
 
+function caja(ruta,info_uno,info_dos,info_tres,titulo){
+    let caja=document.createElement("DIV");
+    caja.classList.add("caja_contenedora");
+    let caja_img=document.createElement("IMG");
+    caja_img.src=ruta;
+    caja_img.classList.add("img");
+    let caja_info=document.createElement("DIV");
+    caja_info.classList.add("caja_info");
+    
 
-/*
-console.log(Profesores);
-console.log(rafa.nota_musica);
-rafa.get_notas("musica");
-rafa.get_notas("matematicas");
-rafa.get_notas("fisica");
-*/
+    let h3_info=document.createElement("H3");
+    h3_info.classList.add("h3_info");
+    h3_info.innerHTML=titulo
+    
+    let ul_info=document.createElement("UL");
+    ul_info.classList.add("ul_info");
+    
+    let li_uno=document.createElement("LI");
+    li_uno.classList.add("li_info");
+    li_uno.innerHTML=info_uno
 
+    let li_dos=document.createElement("LI");
+    li_dos.classList.add("li_info");
+    li_dos.innerHTML=info_dos
 
+    let li_tres=document.createElement("LI");
+    li_tres.classList.add("li_info");
+    li_tres.innerHTML=info_tres
 
+    ul_info.appendChild(li_uno);
+    ul_info.appendChild(li_dos);
+    ul_info.appendChild(li_tres);
 
+    caja_info.appendChild(h3_info);
+    caja_info.appendChild(ul_info);
 
-
-/*
-function cambiar_nota(alumno,nota,materia){
-    if (materia=="musica"){
-        (Alumnos.find(Alumno=>Alumno.nombre==alumno)).nota_musica=nota;
-    }
-    else if (materia=="matematicas"){
-        (Alumnos.find(Alumno=>Alumno.nombre==alumno)).nota_matematicas=nota;
-    }
-    else if (materia=="fisica"){
-        (Alumnos.find(Alumno=>Alumno.nombre==alumno)).nota_fisica=nota;
-    }
-    else if (materia=="quimica"){
-        (Alumnos.find(Alumno=>Alumno.nombre==alumno)).nota_quimica=nota;
-    }
-    else{
-        console.log("No existe  esa materia");
-    }
-}*/
+    caja.appendChild(caja_img);
+    caja.appendChild(caja_info);
+    
+    cajas.appendChild(caja);
+}
+function caja_h2(primer_titulo,segundo_titulo,contenedor){
+    let caja_h2=document.createElement("DIV");
+    caja_h2.classList.add("caja_h2");
+    let h2_izq=document.createElement("H2");
+        h2_izq.classList.add("h2_");
+        h2_izq.classList.add("h2_izq");
+        h2_izq.innerHTML=primer_titulo;
+    let h2_der=document.createElement("H2");
+        h2_der.classList.add("h2_");
+        h2_der.classList.add("h2_der");
+        h2_der.innerHTML=segundo_titulo;
+        caja_h2.appendChild(h2_izq);
+        caja_h2.appendChild(h2_der);
+        contenedor.appendChild(caja_h2);
+}
 
 function crear_seccion_alumnos(){
     let section_contenedor=document.createElement("SECTION");
     section_contenedor.classList.add("section__contenedor");
             body_login.appendChild(section_contenedor);
             let alumno_h1=document.createElement("H1");
-            alumno_h1.innerHTML="Bienvenido/a Alumno : "+usuario.nombre+" "+usuario.apellido;
+            alumno_h1.innerHTML="TUS ASIGNATURAS"
             alumno_h1.classList.add("h1_bienvenida");
             section_contenedor.appendChild(alumno_h1);
             let div_cards=document.createElement("DIV");
@@ -593,10 +1357,10 @@ function crear_seccion_alumnos(){
             card_uno.appendChild(card_top);
             let card_img=document.createElement("img");
             card_img.classList.add("card__img");
-            card_img.src=("./img/notas.jpg");
+            card_img.src=("./img/matematica.jpg");
             card_top.appendChild(card_img);
             let card_button=document.createElement("BUTTON");
-            card_button.innerHTML="NOTAS"
+            card_button.innerHTML="Matematica"
             card_button.classList.add("card__boton");
             card_uno.appendChild(card_button);
             
@@ -604,11 +1368,16 @@ function crear_seccion_alumnos(){
                 card_uno.after(card_uno.cloneNode(true));
             }
             let imagenes=document.getElementsByTagName("img");
-            imagenes[1].src=("./img/datos.jpg");
-            imagenes[2].src=("./img/calendarios.jpg");
-            imagenes[3].src=("/img/examenes.jpg");
+            imagenes[1].src=("./img/fisica.jpg");
+            imagenes[2].src=("./img/quimica.jpg");
+            imagenes[3].src=("/img/historia.jpg");
             let botones=document.getElementsByTagName("button");
-            botones[1].innerHTML="DATOS PERSONALES";
-            botones[2].innerHTML="HORARIOS SEMANALES";
-            botones[3].innerHTML="EXAMENES";
+            botones[1].innerHTML="Fisica";
+            botones[2].innerHTML="Quimica";
+            botones[3].innerHTML="Historia";
+
+            botones[4].setAttribute("id","matematica");
+            botones[1].setAttribute("id","fisica");
+            botones[2].setAttribute("id","quimica");
+            botones[3].setAttribute("id","historia");
 }
