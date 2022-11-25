@@ -137,11 +137,11 @@ form .link{
     background-color:#08313A;
 }
 .caja_alumnos{
-    background: linear-gradient(to right,#009900,#0099cc);
+    background-color:#145DA0;
     width:100%;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
 }
 .alumno{
     display:flex;
@@ -151,22 +151,23 @@ form .link{
     height:80%;
     box-shadow: 0px 1px 10px rgba(0,0,0,0.9);
     width:80%;
-    background-color: #145DA0;
+    background: linear-gradient(to right,#009900,#0099cc);
     align-items: center;
     align-content: center;
     text-align: center;
     justify-content: center;
 }
 .alumno_h2{
-    margin-bottom: 15px;
+    margin-top: 0px;
     font-size: 20px;
     color:#fff;
     height:10%;
     text-align: center;
 }
 .alumno_img{
+    margin-top: 15px;
     border-radius: 50%;
-    height:60%;
+    height:50%;
     width:80%;
 }
 .button_alumno{
@@ -175,7 +176,7 @@ form .link{
     border-radius: 25%;
     height:60%;
     color:#fff;
-    background: linear-gradient(to right,#009900,#0099cc);
+    background-color:#145DA0;
 }
 .caja_de_anuncios{
     background-color: #08313A;
@@ -200,33 +201,36 @@ form .link{
 }
 .h3_alumnos{
     background: linear-gradient(to right,#009900,#0099cc);
-    margin-top: 15px;
+    margin-top: 0;
     text-align: center;
     text-decoration: underline;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 /* CSS HEADER */
 .body_logeado{
-    background-color: black;
-    border:2px solid red;
+    background-image: url(./img/fondo.jpg);
     margin-top:2%;
     width:80%;
     margin-left: 10%;
     margin-right:10%;
+    
 }
 .header_login{
+    border-radius: 5%;
     display:flex;
     width:100%;
-    border :5px solid yellow;
 }
 .header_img{
+    border-radius: 5%;
     height:150px;
     width:35%;
 }
 .datos{
-    background-color: #145DA0;
-    height: 100%;
+    border-radius: 3%;
+    border:1px solid black;
+    background-color:#145DA0;
+    height: 150px;
     width:65%;
     display:flex;
     flex-direction: column;
@@ -235,20 +239,23 @@ form .link{
     justify-content: center;
 }
 .datos_nombre{
-    height: 10%;
-    color:orange;
+    color:black;
     text-align: center;
-    margin-top:18px;
+    margin-top:0px;
+    margin-bottom: 5px;
     font-size: 25px;
+    font-weight: 900;
 }
 .datos_lista{
-    height:90%;
-}
+
+}   
 li{
     margin:0;
     text-align: center;
     list-style-type: none;
     font-size: 18px;
+    font-weight: 900;
+    color:white;
 }
 
 
@@ -256,7 +263,7 @@ li{
 .section_asignatura{
     display:flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #145DA0;
 }
 
 .h1_asignatura{
@@ -330,28 +337,32 @@ li{
 /* CSS LISTA DE ALUMNOS// MAS INFO*/
 .alumno_h2{
 margin-top: 0px;
-margin-bottom: 0px;
+margin-bottom: 15px;
 }
 .alumno_dni{
-    margin-top: 25px;
+    margin-top: 5px;
     color:orange;
     font-size: 15px;
+    font-weight: 900;
     text-align: start;
 }
 .alumno_nro_contacto{
     color:orange;
     font-size: 15px;
+    font-weight: 900;
 }
 .alumno_lista{
     margin-top:10px
+
 }
 .alumno_ul{
+    font-weight: 900;
     text-align: start;
     color:white;
-    font-size:2.5vh;
+    font-size:2.2vh;
     margin-bottom: 5px;
 }
-.asignar_notas{
+#asignar_notas{
     margin-top: 15px;
     background: linear-gradient(to right,#009900,#0099cc);
     color:white;
@@ -390,4 +401,90 @@ margin-bottom: 0px;
     font-size: 15px;
     font-weight: 900;
     border-radius: 10px;
+}
+
+/* SECTION PROFESORES*/
+.h2_profesores{
+    width:100%;
+    text-align: center;
+    background-color: antiquewhite;
+}
+.section_profesores{
+    background: linear-gradient(to right,#009900,#0099cc);
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    height: auto;
+}
+.profesor{
+    background: linear-gradient(to left,#009900,#0099cc);
+    box-shadow: 0 5px 10px rgba(71,3,6,0.7);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    display:flex;
+    width:80%;
+    height: 150px;
+    border-radius: 2%;
+}
+.img_profesor{
+    margin-left: 2%;
+    margin-top: 4%;
+    height: 120px;
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
+    width:48%;
+    min-height: 50px;
+}
+.datos_profesor{
+    margin-top: 4%;
+    width:48%;
+    height: 120px;
+    background-color:antiquewhite;
+}
+.h3_profesor{
+    height: 30%;
+    margin-top:3px;
+    text-align: center;
+    font-size: 18px;
+}
+.lista_profesor{
+    height:70%;
+    margin-top: 12px;
+    margin-left: 0px;
+    width:100%;
+}
+.li_profesor{
+    color:brown;
+    margin-bottom:3px;
+    text-align:center;
+    list-style: none;
+    font-size: 12px;
+    word-spacing: 5px;
+    font-weight: 900;
+}
+/* CSS DATOS DEL DIA*/
+.datos_del_dia{
+    background-color: orange;
+    display: grid;
+    height: 25px;
+    grid-template-columns: repeat(4,1fr);
+    width:100%;
+}
+.p_datos_del_dia{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 25px;
+    border-right: 2px solid white;
+    font-size: 14px;
+    font-weight: 900;
+    color:black;
+}
+
+.box_shadow{
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.9);
 }

@@ -1,3 +1,11 @@
+// PROFE PARA ACCEDER AL LOGIN ==> LOGIN ALUMNO = usuario: 1    contraseña:  elbarto
+//                             ==> LOGIN PROfESOR = usuario: 111  contraseña : edna
+//                             ==> Login Administrador = usuario: 15  contraseña: skinner
+
+// PARA PROBAR EL REGISTRO      ==> ALUMNO =  el Usuario = 4 , la contraseña y el Email a eleccion
+//                              ==> PROFESOR = el usuario debe ser = 114 , la contraseña y el Email a eleccion
+//                              ==> ADMINISTRADOR = el usuario debe ser = 16 ,la contraseña y el email a eleccion
+
 //     CLASES
 class Administrador{
     constructor(dni,nombre,apellido,edad,img,es_director,nro_contacto){
@@ -318,13 +326,10 @@ let nuevo_usuario=new Usuario(1,"elbarto","BartSimpsons@gmail.com",false,false);
     usuarios_registrados.push(nuevo_usuario);
     nuevo_usuario=new Usuario(113,"coach","coach_krupt@gmail.com",true,false);
     usuarios_registrados.push(nuevo_usuario);
-    nuevo_usuario=new Usuario(114,"eliza","elizabeth_hoveer@gmail.com",true,false);
-    usuarios_registrados.push(nuevo_usuario);
+    
     console.log(usuarios_registrados);
 //ADMINISTRADORES REGISTRADOS
     nuevo_usuario=new Usuario(15,"skinner","skinner@gmail.com",false,true);
-    usuarios_registrados.push(nuevo_usuario);
-    nuevo_usuario=new Usuario(16,"jardinero","jardinero_willie@gmail.com",false,true);
     usuarios_registrados.push(nuevo_usuario);
 
 
@@ -456,6 +461,7 @@ registro.addEventListener("click",(e)=>{
                     let usuarios_registrados_json=JSON.stringify(usuarios_registrados);
                     localStorage.setItem("usuarios",usuarios_registrados_json);
                     alert("Tu cuenta de Alumno ha sido registrada,ya puedes ingresar");
+                    location.reload();
                 }
             }
             else if(register_data.usuario=="profesor"){
@@ -470,6 +476,7 @@ registro.addEventListener("click",(e)=>{
                     let usuarios_registrados_json=JSON.stringify(usuarios_registrados);
                     localStorage.setItem("usuarios",usuarios_registrados_json);
                     alert("Tu cuenta como Profesor ha sido registrada,ya puedes ingresar");
+                    location.reload();
                 }
             }
             else if(register_data.usuario=="administrador"){
@@ -484,6 +491,7 @@ registro.addEventListener("click",(e)=>{
                     let usuarios_registrados_json=JSON.stringify(usuarios_registrados);
                     localStorage.setItem("usuarios",usuarios_registrados_json);
                     alert("Felicidades,tu cuenta como Administrador ha sido registrada");
+                    location.reload();
                 }
             }
         }
@@ -525,17 +533,13 @@ function crear_header(nombre,apellido,ruta,edad,nro_contacto,dni){
     let li_cuatro=document.createElement("LI");
     li_cuatro.classList.add("hedear_li");
 //CREO BOTON EDITAR DATOS
-    let editar_datos=document.createElement("BUTTON");
-    editar_datos.setAttribute("id","editar_datos")
-    editar_datos.classList.add("button_alumno");
-    editar_datos.innerHTML="Editar datos"
 
 //PADRES E HIJOS
-li_cuatro.appendChild(editar_datos);
+
 datos_lista.appendChild(li_uno);
 datos_lista.appendChild(li_dos);
 datos_lista.appendChild(li_tres);
-datos_lista.appendChild(li_cuatro);
+
 
 datos.appendChild(datos_nombre);
 datos.appendChild(datos_lista);
@@ -565,12 +569,14 @@ function anuncios_director(){
 }
 // FUNCION EVENTO ALUMNOS, VER MAS
 function evento(e){
-
         if(e.target.tagName=="BUTTON" && e.target.classList[1] !== undefined){
             let alumno=Alumnos.find(objeto=>objeto.nombre==e.target.classList[1]);
             console.log(alumno);
             let caja=document.getElementById(alumno.nombre);
-            let user=Profesores.find(objeto=>objeto.nombre==((e.target.parentNode).parentNode.parentNode.parentNode.parentNode.children[2].classList[1]));
+            let profesor=document.getElementById("header_login");
+            console.log(profesor);
+            let user=Profesores.find(objeto=>objeto.nombre==(profesor.classList[1]));
+            console.log(user);
             caja.removeChild(caja.lastChild);
             caja.removeChild(caja.lastChild);
             let h3_dni=document.createElement("H3")
@@ -591,9 +597,6 @@ function evento(e){
     tres_ul.classList.add("alumno_ul");
 
     if (user.asignatura=="Matematica"){
-        console.log(alumno);
-        console.log(alumno.nota_matematicas);
-        console.log(alumno.get_notas_matematica("primer"));
         uno_ul.innerHTML=alumno.get_notas_matematica("primer");
         dos_ul.innerHTML=alumno.get_notas_matematica("segundo");
         tres_ul.innerHTML=alumno.get_notas_matematica("tercer");
@@ -723,27 +726,77 @@ function enviar_notas(e){
         let profesor=Profesores.find(object=>object.nombre==user.classList[1]);
         
         if (profesor.asignatura=="Matematica"){
-            alumno.nota_matematicas.primer=inputs[0].value
-            alumno.nota_matematicas.segundo=inputs[1].value
-            alumno.nota_matematicas.tercer=inputs[2].value
+            alumno.nota_matematicas.primer=inputs[0].value;
+            if(alumno.nota_matematicas.primer.length==0){
+                alumno.nota_matematicas.primer=undefined;
+            }
+            alumno.nota_matematicas.segundo=inputs[1].value;
+            if(alumno.nota_matematicas.segundo.length==0){
+                alumno.nota_matematicas.segundo=undefined;
+            }
+            alumno.nota_matematicas.tercer=inputs[2].value;
+            if(alumno.nota_matematicas.tercer.length==0){
+                alumno.nota_matematicas.tercer=undefined;
+            }
             let alumnos_json=JSON.stringify(Alumnos);
             localStorage.setItem("alumnos",alumnos_json);
             console.log(alumno.nota_matematicas);
+            alert("Las notas fueron registradas,se actualizara la pagina para ver los cambios");
+            location.reload();
         }
         else if(profesor.asignatura=="Fisica"){
             alumno.nota_fisica.primer=inputs[0].value
+            if(alumno.nota_fisica.primer.length==0){
+                alumno.nota_fisica.primer=undefined;
+            }
             alumno.nota_fisica.segundo=inputs[1].value
+            if(alumno.nota_fisica.segundo.length==0){
+                alumno.nota_fisica.segundo=undefined;
+            }
             alumno.nota_fisica.tercer=inputs[2].value
+            if(alumno.nota_fisica.tercer.length==0){
+                alumno.nota_fisica.tercer=undefined;
+            }
+            let alumnos_json=JSON.stringify(Alumnos);
+            localStorage.setItem("alumnos",alumnos_json);
+            alert("Las notas fueron registradas,se actualizara la pagina para ver los cambios");
+            location.reload();
         }
         else if(profesor.asignatura=="Quimica"){
             alumno.nota_quimica.primer=inputs[0].value
+            if(alumno.nota_quimica.primer.length==0){
+                alumno.nota_quimica.primer=undefined;
+            }
             alumno.nota_quimica.segundo=inputs[1].value
+            if(alumno.nota_quimica.segundo.length==0){
+                alumno.nota_quimica.segundo=undefined;
+            }
             alumno.nota_quimica.tercer=inputs[2].value
+            if(alumno.nota_quimica.tercer.length==0){
+                alumno.nota_quimica.tercer=undefined;
+            }
+            let alumnos_json=JSON.stringify(Alumnos);
+            localStorage.setItem("alumnos",alumnos_json);
+            alert("Las notas fueron registradas,se actualizara la pagina para ver los cambios");
+            location.reload();
         }
         else{
             alumno.nota_historia.primer=inputs[0].value
+            if(alumno.nota_historia.primer.length==0){
+                alumno.nota_historia.primer=undefined;
+            }
             alumno.nota_historia.segundo=inputs[1].value
+            if(alumno.nota_historia.segundo.length==0){
+                alumno.nota_historia.segundo=undefined;
+            }
             alumno.nota_historia.tercer=inputs[2].value
+            if(alumno.nota_historia.tercer.length==0){
+                alumno.nota_historia.tercer=undefined;
+            }
+            let alumnos_json=JSON.stringify(Alumnos);
+            localStorage.setItem("alumnos",alumnos_json);
+            alert("Las notas fueron registradas,se actualizara la pagina para ver los cambios");
+            location.reload();
         }
     }
 }
@@ -773,13 +826,12 @@ function card_alumnos(nombre,apellido,ruta){
 function buscar_objeto(lista,dni){
     lista.find(objeto=>objeto.dni=dni);
 }
+
 let storage_alumnos=JSON.parse(localStorage.getItem("alumnos"));
 if(storage_alumnos!==null){
-    Alumnos=storage_alumnos;
+    Alumnos=[];   
+    storage_alumnos.forEach(objeto=>Alumnos.push(new Alumno (objeto.nombre,objeto.apellido,objeto.dni,objeto.img,objeto.edad,objeto.nota_historia,objeto.nota_matematicas,objeto.nota_fisica,objeto.nota_quimica,objeto.nro_contacto)));
 }
-console.log(storage_alumnos);
-console.log(Alumnos);
-
 boton_entrar.addEventListener("click",(e)=>{
     e.preventDefault();
     const data={
@@ -796,6 +848,7 @@ boton_entrar.addEventListener("click",(e)=>{
             body_login.removeChild(div_contenedor);
             body_login.classList.remove("body_login");
             body_login.classList.add("body_logeado");
+            datos_del_dia();
             let user=Profesores.find(objeto=>objeto.dni==usuario.dni);
             crear_header(user.nombre,user.apellido,user.img,user.edad,user.nro_contacto,user.dni);
             let crear_section=document.createElement("SECTION");
@@ -824,29 +877,94 @@ boton_entrar.addEventListener("click",(e)=>{
         }
         else if(es_administrador(data.dni,usuarios_registrados)){       //LOGIN USUARIO ADMINISTRADOR
             usuario=identificar_usuario(data.dni,administradores)
+                            let caja_profesores=[];
+                            let caja_de_alumnos=[];
+                            function card_info(ruta,nombre,apellido,nro_contacto,dni,area,contenedor){
+                            let div_contenedor=document.createElement("DIV");
+                            div_contenedor.classList.add("profesor");
+                            contenedor.push(div_contenedor)
+                            let img_datos=document.createElement("IMG");
+                            img_datos.src=ruta;
+                            img_datos.classList.add("img_profesor")
+
+                            let div_datos=document.createElement("DIV");
+                            div_datos.classList.add("datos_profesor");
+                            div_contenedor.appendChild(div_datos);
+                            let h3_datos=document.createElement("H3");
+                            h3_datos.classList.add("h3_profesor");
+                            h3_datos.innerHTML= nombre+" "+apellido;
+                    
+                            let ul_lista=document.createElement("UL");
+                            ul_lista.classList.add("lista_profesor");
+
+                            let li_uno=document.createElement("LI");
+                            li_uno.classList.add("li_profesor");
+                            li_uno.innerHTML="Contacto: "+nro_contacto;
+
+                            let li_dos=document.createElement("LI");
+                            li_dos.classList.add("li_profesor");
+                            li_dos.innerHTML="DNI : "+dni;
+                    
+                            let li_tres=document.createElement("LI");
+                            li_tres.classList.add("li_profesor");
+                            li_tres.innerHTML=area;
+                    
+                            //apends
+                            ul_lista.appendChild(li_uno);
+                            ul_lista.appendChild(li_dos);
+                            ul_lista.appendChild(li_tres);
+                    
+                            div_datos.appendChild(h3_datos);
+                            div_datos.appendChild(ul_lista);
+                            div_contenedor.appendChild(img_datos);
+                            div_contenedor.appendChild(div_datos);
+                            
+                        }
             if(usuario.es_director){
                 body_login.removeChild(div_contenedor);
                 body_login.classList.remove("body_login");
                 body_login.classList.add("body_logeado");
+                datos_del_dia();
+                //HEADER
                 let user=administradores.find(objetos=>objetos.dni==usuario.dni);
                 crear_header(user.nombre,user.apellido,user.img,user.edad,user.nro_contacto,user.dni);
-                let crear_section=document.createElement("SECTION");
-                crear_section.classList.add("section_alumnos");
-                crear_section.setAttribute("id","section_alumnos");
-                body_login.appendChild(crear_section);
-                section_alumnos=document.getElementById("section_alumnos");
+                //SECCCION PROFESORES
+                let seccion_profesores=document.createElement("SECTION");
+                seccion_profesores.classList.add("section_profesores");
+                let h2_profesores=document.createElement("H2");
+                h2_profesores.classList.add("h2_profesores");
+                h2_profesores.innerHTML="PROFESORES";
+                body_login.appendChild(h2_profesores);
+                Profesores.forEach(profesor=> card_info(profesor.img,profesor.nombre,profesor.apellido,profesor.nro_contacto,profesor.dni,"Area: "+profesor.asignatura,caja_profesores));
+                function set_time_out(i,caja,contenedor){
+                    setTimeout(()=>{
+                        contenedor.appendChild(caja[i])
+                    },i*500)
+                }
+                console.log(caja_profesores)
+                for (i=0;i<caja_profesores.length;i++){
+                    set_time_out(i,caja_profesores,seccion_profesores)
+                }
+
+                
+                body_login.appendChild(seccion_profesores);
+                let section=document.createElement("SECTION");
+                section.classList.add("section_profesores");
+                section.setAttribute("id","section_alumnos");
                 let lista_alumnos=document.createElement("H3");
                 lista_alumnos.classList.add("h3_alumnos");
                 lista_alumnos.innerHTML="Lista de Alumnos";
-                section_alumnos.appendChild(lista_alumnos);
-                let caja_alumnos=document.createElement("DIV");
-                caja_alumnos.setAttribute("id","caja_alumnos");
-                caja_alumnos.classList.add("caja_alumnos");
-                section_alumnos.appendChild(caja_alumnos);
+                section_alumnos=document.getElementById("section_alumnos");
+                Alumnos.forEach(element=>{
+                    card_info(element.img,element.nombre,element.apellido,element.nro_contacto,element.dni,"Edad : "+element.edad,caja_de_alumnos)
+                })
+                console.log(caja_de_alumnos);
+                for (i=0;i<caja_de_alumnos.length;i++){
+                    set_time_out(i,caja_de_alumnos,section);
+                }
+                body_login.appendChild(lista_alumnos);
+                body_login.appendChild(section);              
                 console.log("Bienvenido/a Director/a : " +usuario.nombre+" "+usuario.apellido );
-                Alumnos.forEach(element => {
-                    card_alumnos(element.nombre,element.apellido,element.img);
-                });
             }
             else{
                 body_login.removeChild(div_contenedor);
@@ -854,6 +972,25 @@ boton_entrar.addEventListener("click",(e)=>{
                 body_login.classList.add("body_logeado");
                 let user=administradores.find(objetos=>objetos.dni==usuario.dni);
                 crear_header(user.nombre,user.apellido,user.img,user.edad,user.nro_contacto,user.dni);
+
+                let seccion_profesores=document.createElement("SECTION");
+                seccion_profesores.classList.add("section_profesores");
+                let h2_profesores=document.createElement("H2");
+                h2_profesores.classList.add("h2_profesores");
+                h2_profesores.innerHTML="PROFESORES";
+                body_login.appendChild(h2_profesores);
+                Profesores.forEach(profesor=> card_info(profesor.img,profesor.nombre,profesor.apellido,profesor.nro_contacto,profesor.dni,"Area: "+profesor.asignatura,caja_profesores));
+                function set_time_out(i,caja,contenedor){
+                    setTimeout(()=>{
+                        contenedor.appendChild(caja[i])
+                    },i*500)
+                }
+                console.log(caja_profesores)
+                for (i=0;i<caja_profesores.length;i++){
+                    set_time_out(i,caja_profesores,seccion_profesores)
+                }
+
+                body_login.appendChild(seccion_profesores);
                 let crear_section=document.createElement("SECTION");
                 crear_section.classList.add("section_alumnos");
                 crear_section.setAttribute("id","section_alumnos");
@@ -862,15 +999,19 @@ boton_entrar.addEventListener("click",(e)=>{
                 let lista_alumnos=document.createElement("H3");
                 lista_alumnos.classList.add("h3_alumnos");
                 lista_alumnos.innerHTML="Lista de Alumnos";
+                body_login.appendChild(lista_alumnos);
                 section_alumnos.appendChild(lista_alumnos);
                 let caja_alumnos=document.createElement("DIV");
                 caja_alumnos.setAttribute("id","caja_alumnos");
                 caja_alumnos.classList.add("caja_alumnos");
                 section_alumnos.appendChild(caja_alumnos);
-                console.log("Bienvenido/a Administrador/a : " +usuario.nombre+" "+usuario.apellido );
-                Alumnos.forEach(element => {
-                    card_alumnos(element.nombre,element.apellido,element.img);
-                });
+                Alumnos.forEach(element=>{
+                    card_info(element.img,element.nombre,element.apellido,element.nro_contacto,element.dni,"Edad : "+element.edad,caja_de_alumnos)
+                })
+                console.log(caja_de_alumnos);
+                for (i=0;i<caja_de_alumnos.length;i++){
+                    set_time_out(i,caja_de_alumnos,caja_alumnos);
+                }
             }
         }   
         else{                                                   //LOGIN USUARIO-ALUMNO
@@ -879,6 +1020,7 @@ boton_entrar.addEventListener("click",(e)=>{
             body_login.removeChild(div_contenedor);
             body_login.classList.remove("body_login");
             body_login.classList.add("body_logeado");
+            datos_del_dia();
             let user=Alumnos.find(objeto=>objeto.dni==usuario.dni);
             crear_header(user.nombre,user.apellido,user.img,user.edad,user.nro_contacto,user.dni);
             crear_seccion_alumnos();
@@ -1068,6 +1210,7 @@ boton_entrar.addEventListener("click",(e)=>{
                 section_asignatura.appendChild(primer_contenedor);
                 section_asignatura.appendChild(segundo_contenedor);
                 body_login.appendChild(section_asignatura);
+
                 
             })
             let quimica=document.getElementById("quimica");
@@ -1375,9 +1518,106 @@ function crear_seccion_alumnos(){
             botones[1].innerHTML="Fisica";
             botones[2].innerHTML="Quimica";
             botones[3].innerHTML="Historia";
-
-            botones[4].setAttribute("id","matematica");
+            console.log(botones);
+            botones[0].setAttribute("id","matematica");
             botones[1].setAttribute("id","fisica");
             botones[2].setAttribute("id","quimica");
             botones[3].setAttribute("id","historia");
+}
+
+function datos_del_dia(){
+    //CREO ETIQUETAS
+    let div=document.createElement("DIV");
+    div.classList.add("datos_del_dia");
+    let p_hora=document.createElement("P");
+    p_hora.classList.add("p_datos_del_dia");
+    let p_fecha=document.createElement("P");
+    p_fecha.classList.add("p_datos_del_dia");
+    let p_dia=document.createElement("P");
+    p_dia.classList.add("p_datos_del_dia");
+    let p_temp=document.createElement("P");
+    p_temp.classList.add("p_datos_del_dia");
+    let p_cielo=document.createElement("P");
+    p_cielo.classList.add("p_datos_del_dia");
+
+    //APPENDS
+    div.appendChild(p_hora);
+    div.appendChild(p_fecha);
+    div.appendChild(p_temp);
+    div.appendChild(p_cielo);
+
+    //INTERVAL RELOJ
+    setInterval(()=>{
+        let fecha= new Date();
+        hora= fecha.getHours();
+        minutos=fecha.getMinutes();
+        segundos=fecha.getSeconds();
+        diaSemana=fecha.getDay();
+        dia=fecha.getDate();
+        mes=fecha.getMonth();
+        year=fecha.getFullYear();
+        // CONDICIONALES
+        if(hora<10){
+            hora="0"+hora;
+        }
+        if(minutos<10){
+            minutos="0"+minutos;
+        }
+        if(segundos<10){
+            segundos="0"+segundos;
+        }
+        if(mes<10){
+            mes="0"+mes;
+        }
+        p_hora.innerHTML="Hora : "+hora+" : "+minutos+" : "+segundos;
+        //let p_fecha=document.getElementById("p_fecha");
+        p_fecha.innerHTML="Fecha: "+dia+"/"+(mes+1)+"/"+year;
+    },1000)
+
+    // CLIMA API
+    navigator.geolocation.getCurrentPosition(showPosition)
+    let api_key="92bca48aa537f235f997219f9eefed21";
+    function showPosition(position){
+        console.log(position.coords.latitude);
+        let lat=position.coords.latitude;
+        console.log(position.coords.longitude);
+        let long=position.coords.longitude;
+        fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&lang=es&units=metric&appid="+api_key)
+        .then(response=>response.json())
+        .then(data=>{
+            let i_cielo=document.createElement("I");
+            console.log(data);
+            console.log(parseInt(data.main.temp));
+            p_temp.innerHTML="Temperatura : "+parseInt(data.main.temp)+"°";
+            let cielo=data.weather[0].main;
+            console.log(cielo);
+            if(cielo=="Clear"){
+                i_cielo.classList.add("fa-regular");
+                i_cielo.classList.add("fa-sun");
+                i_cielo.style.color="yellow";
+                p_cielo.innerHTML="DESPEJADO";
+            }
+            else if(cielo=="Clouds"){
+                i_cielo.classList.add("fa_sharp");
+                i_cielo.classList.add("fa-solid");
+                i_cielo.classList.add("fa-cloud");
+                i_cielo.style.color="#696969"
+                p_cielo.innerHTML="NUBLADO "
+            }
+            else if(cielo=="Rain"){
+                i_cielo.classList.add("fa_solid");
+                i_cielo.classList.add("fa-cloud-rain");
+                i_cielo.style.color="skyblue"
+                p_cielo.innerHTML="LLUVIOSO"
+            }
+            else if(cielo=="Thunderstorm"){
+                i_cielo.classList.add("fa-solid");
+                i_cielo.classList.add("fa-cloud-bolt");
+                i_cielo.style.color="blue"
+                p_cielo.innerHTML="Tormenta"
+            }
+            p_cielo.appendChild(i_cielo);
+        })
+        }
+    body_login.appendChild(div);
 }
